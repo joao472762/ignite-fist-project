@@ -19,12 +19,11 @@ export function SideBar(){
 
                 <strong>Amanda Aguiar</strong>
                 <p>UI Designer</p>
-
             </div>
             <footer>
 
                 <EditButton
-                title="Editar o seu Perfil"
+                    title="Editar o seu Perfil"
                 />
             </footer>
         </aside>

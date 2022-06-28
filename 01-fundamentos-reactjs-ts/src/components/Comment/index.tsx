@@ -3,27 +3,34 @@ import {Trash} from 'phosphor-react'
 import {ThumbsUp} from 'phosphor-react'
 
 import styles from "./styles.module.css"
+import { useState } from "react";
+
+
+
+interface CommentProps {
+    onDeleteComment: (commentId:number) => void,
+    src: string,
+    content: string,
+    commentId:  number
+}
 
 export function Comment({
-    props=  {
-        applauds: 2,
-        src:'',
-        content: '',
-        commentId: 0,
-        onDeleteComment: () => (null),
-        onAddNewApplauds: () => (null)
+    commentId,
+    content,
+    onDeleteComment,
+    src
+}:CommentProps){
 
-    }
-    
-}){
 
-    const {content,onDeleteComment,src, onAddNewApplauds} = props
+    const [applaudCounts,setApplaudsCounts] = useState(0)
 
     function handleDeleteComment(){
-        onDeleteComment(props.commentId)
+        onDeleteComment(commentId)
     }
     function handleAddNewApplauds(){
-        onAddNewApplauds()
+        setApplaudsCounts(state =>{
+            return state + 1
+        })
     }
 
     return(
@@ -59,7 +66,7 @@ export function Comment({
                         <ThumbsUp
                         size={20}
                         />
-                        <strong>Apaudir <span>{props.applauds}</span></strong>
+                        <strong>Apaudir <span>{applaudCounts}</span></strong>
                     </button>
 
                 </footer>

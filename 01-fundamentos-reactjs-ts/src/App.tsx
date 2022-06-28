@@ -9,13 +9,13 @@ import { SideBar } from './components/Sidebar'
 const posts = [
   {
       id: 1,
-      author: {
-      avatarUrl: 'https://github.com/joao472762.png',
-      name: 'Amanda Aguiar',
-      role: 'Designer UI'
+        author: {
+        avatarUrl: 'https://github.com/joao472762.png',
+        name: 'Amanda Aguiar',
+        role: 'Designer UI'
       },
     
-      content:[ 
+      commentContent:[ 
          { type: 'paragraph',content: 'Fala galeraa 👋'},
          { type: 'paragraph', content: 'Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀'},
          { type: 'link', content: 'jane.design/doctorcare'},
@@ -31,7 +31,7 @@ const posts = [
     role: 'Matemática'
     },
     
-    content:[
+    commentContent:[
        { type: 'paragraph',content: 'chama no truco'},
        { type: 'paragraph', content: 'Terminei um novo Projejo. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀'},
        { type: 'link', content: 'jane.design/doctorcare'},
@@ -53,8 +53,8 @@ function App() {
          { posts.map(post =>{
             return(
               <Post
-                PostProps={post}
                 key= {post.id}
+                Post = {post}
               />
             )
           })}

@@ -2,37 +2,42 @@ import { Avatar } from '../Avatar'
 import { Comment } from '../Comment'
 import styles from './styles.module.css'
 
-import { useState } from 'react'
 import ptBr from 'date-fns/locale/pt-BR'
 import {format, formatDistanceToNow,} from "date-fns"
+import { ChangeEvent, FormEvent, InvalidEvent, useState } from 'react'
 
 
+interface Author {
+    avatarUrl: string,
+    name: string,
+    role: string
+}
 
-export function Post({
-    PostProps={
-        author: {
-            avatarUrl: '',
-            name: '',
-            role: ''
-            },
-            content:[ 
-                { type: '',content: ''},      
-             ],
-             publishedAt: new Date('2022-5-15 20:30:20')
+interface CommentContent{
+    type: string,
+    content: string
+}
+
+interface props {
+    Post:
+    {
+        author: Author,
+        commentContent: CommentContent[]
+        publishedAt: Date
     }
-     
-}){
+}
+
+export function Post(PostProps:props){
 
     const [userId,setUserId] = useState(1)
     const [comments,setComments] = useState([{
         id: 0,
         textContent: 'a rua é nóis'
     }])
-    const [applaudCounts,setApplaudsCounts] = useState (0)
     const [newCommentText, setNewCommentText] = useState('')
 
 
-    const {author,content,publishedAt} = PostProps
+    const {author,commentContent,publishedAt} =  PostProps.Post
     const {name,role,avatarUrl}  = author
 
     const publishedDateFormated =
@@ -47,15 +52,16 @@ export function Post({
         addSuffix: true
     })
     
-    function handleCreateNewComment(){
+    function handleCreateNewComment(event:FormEvent<HTMLFormElement>){
         event.preventDefault()
         let newComment  = {
             id:  userId,
             textContent: newCommentText,
-            
         }
         
-        setUserId(userId + 1)
+        setUserId(state =>{
+            return state + 1
+        })
         setComments(state => {
             return [...state,newComment]
         })
@@ -65,30 +71,27 @@ export function Post({
         
     }
     
-    function handleNewCommentChange(){
+    function handleNewCommentChange(event:ChangeEvent<HTMLTextAreaElement>){
         event.target.setCustomValidity('')
         setNewCommentText(event.target.value)
        
     }
 
-    function handleNewCommentInvalid(event){
+    function handleNewCommentInvalid(event: InvalidEvent<HTMLTextAreaElement>){
         
         event.target.setCustomValidity('por favor preencha o campo')
         
         
     }
 
-    function deleteComment(commentIdToDelete){
+    function deleteComment(commentIdToDelete: number){
         const listCommentWithoutOne = comments.filter(comment=>{
             return comment.id != commentIdToDelete
         })
         setComments(listCommentWithoutOne)
     }
-    function addNewApplauds(){
-        setApplaudsCounts(state =>{
-            return state + 1
-        })
-    }
+
+  
     
     
     const isNewCommentEmpty = newCommentText.length === 0
@@ -114,7 +117,7 @@ export function Post({
             </header>
 
             <section className={styles.content}>
-                {content.map(line=>{
+                {commentContent.map(line=>{
                     return(
                         line.type === 'paragraph'
                         ?<p key={line.content}> {line.content} </p>
@@ -154,15 +157,13 @@ export function Post({
                             comment.id != 0
                             &&<Comment
                                 key={comment.id}
-                                props={{
-                                    applauds: applaudCounts,
-                                    commentId:comment.id,
-                                    src: avatarUrl,
-                                    content: comment.textContent,
-                                    onDeleteComment: deleteComment,
-                                    onAddNewApplauds: addNewApplauds,
-                                }}
                                 
+                                
+                                commentId={comment.id}
+                                src={ avatarUrl}
+                                content={ comment.textContent}
+                                onDeleteComment={ deleteComment}
+                            
                             />
                         )
                     })

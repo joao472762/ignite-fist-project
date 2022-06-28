@@ -1,0 +1,38 @@
+:root{
+    --white: #fff;
+    --gray100: #E1E1E6;
+    --gray300: #C4C4CC;
+    --gray400: #8D8D99;
+    --gray600: #323238;
+    --gray700: #29292e;
+    --gray800: #202024;
+    --gray900: #121214;
+
+    --green500: #00B37E;
+    --green700: #00875F;
+
+    --red: #F75A68
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+
+:focus{
+    outline: transparent;
+    box-shadow: 0 0 0 2px var(--green500);
+}
+
+body{
+    background-color: var(--gray900);
+    color: var(--gray300);
+    -webkit-font-somothing: antialiased
+}
+body,input,textarea,button{
+    font-family: Roboto,sans-serif,serif;
+    font-weight: 400;
+    font-size: 1rem;
+}

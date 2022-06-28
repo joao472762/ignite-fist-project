@@ -1,0 +1,24 @@
+
+img.avatar {
+    box-sizing: initial;
+   
+    padding: 0;
+    border-radius: 8px;
+    background-color: var(--gray800);
+    border: 4px solid var(--gray800);
+    width: 3.12rem;
+    height: 3.12rem;
+}
+
+img.avatarWithBorder {
+    box-sizing: initial;
+   
+    padding: 0;
+    border-radius: 8px;
+    background-color: var(--gray800);
+    border: 4px solid var(--gray800);
+    width: 3.12rem;
+    height: 3.12rem;
+    border: 4px solid #202024;
+    outline: 2px solid var(--green500);
+}

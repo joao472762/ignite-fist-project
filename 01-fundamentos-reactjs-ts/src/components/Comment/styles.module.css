@@ -1,0 +1,82 @@
+section.comment {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+.comment .profile{
+    width: 100%;
+}
+.comment .author{
+    display: flex;
+    align-items: flex-start;
+    background-color: var(--gray700);
+    padding: 1rem 1rem 1.5rem 1rem;
+    border-radius: 8px;
+    width: 100%;
+    justify-content: space-between;
+}
+.comment .profile .author .authorInfo span{
+    font-size: .875rem ;
+    line-height: 1.6;
+    color: var(--gray400)
+
+}
+.comment .profile .author .authorInfo time{
+    margin-bottom: 1rem;
+    display: block;
+    margin-left: 0.125rem;
+    font-size: .75rem;
+    
+}
+
+.comment .profile .author button {
+    border: 0;
+    width: 1.5rem;
+    height: 1.5rem;
+    background-color: transparent;
+    color: var(--gray400);
+    transition: .1s color;
+    
+}
+.comment .profile .author button:hover{
+    color: var(--red);
+}
+
+.comment .profile button{
+    line-height: 0;
+    border-radius: 2px;
+}
+.comment .profile .reaction button{
+  
+    background-color: transparent;
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    color: var(--gray400);
+
+    transition: .1s color;
+}
+.comment .profile .reaction button:hover{
+    color: var(--white);
+}
+
+
+.comment .profile .reaction button:active{
+    color: var(--green500)
+}
+.comment .profile .reaction span::before{
+    padding: 0  .5rem;
+    content: "\2022";
+}
+.comment .profile .reaction button:focus{
+    box-sizing: border-box;
+    
+    box-shadow: 0 0 2px var(--gray400);
+    
+}
+.comment .profile .reaction strong{
+    margin-left: 0.625rem;
+    ;
+}
